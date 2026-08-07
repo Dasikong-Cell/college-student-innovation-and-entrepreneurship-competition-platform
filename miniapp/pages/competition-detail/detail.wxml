@@ -1,0 +1,84 @@
+<view class="container">
+
+  <block wx:if="{{loading}}">
+    <view class="skeleton" style="height:400rpx;margin-bottom:24rpx;border-radius:16rpx;"></view>
+    <view class="card">
+      <view class="skeleton" style="height:32rpx;width:70%;margin-bottom:16rpx;"></view>
+      <view class="skeleton" style="height:24rpx;width:40%;margin-bottom:8rpx;"></view>
+      <view class="skeleton" style="height:24rpx;width:60%;"></view>
+    </view>
+  </block>
+
+  <block wx:elif="{{detail}}">
+
+    <view class="cover-wrap" wx:if="{{detail.coverImage || detail.imageUrl}}" data-url="{{detail.coverImage || detail.imageUrl}}" bindtap="onPreviewImage">
+      <image class="cover-image" src="{{detail.coverImage || detail.imageUrl}}" mode="aspectFill" />
+    </view>
+    <view wx:else class="cover-placeholder">
+      <text class="placeholder-icon">🏆</text>
+    </view>
+
+    <view class="card">
+      <view class="title">{{detail.title || detail.name}}</view>
+      <view class="flex flex-wrap mt-8" wx:if="{{detail.category}}">
+        <view class="tag tag-orange">{{detail.category}}</view>
+      </view>
+      <view class="flex mt-8" wx:if="{{detail.status}}">
+        <view class="tag tag-green">{{detail.status}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">报名时间</view>
+      <view class="time-row" wx:if="{{detail.registerStart || detail.startTime}}">
+        <text class="time-label">开始</text>
+        <text class="time-value">{{detail.registerStart || detail.startTime}}</text>
+      </view>
+      <view class="time-row" wx:if="{{detail.registerEnd || detail.endTime}}">
+        <text class="time-label">截止</text>
+        <text class="time-value">{{detail.registerEnd || detail.endTime}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">比赛时间</view>
+      <view class="time-row" wx:if="{{detail.eventStart || detail.eventTime}}">
+        <text class="time-label">时间</text>
+        <text class="time-value">{{detail.eventStart || detail.eventTime}}</text>
+      </view>
+      <view class="time-row" wx:if="{{detail.location || detail.venue}}">
+        <text class="time-label">地点</text>
+        <text class="time-value">{{detail.location || detail.venue}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">大赛简介</view>
+      <view class="desc-content">
+        <rich-text nodes="{{detail.description || detail.content || '暂无介绍'}}"></rich-text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{detail.requirements || detail.requirement}}">
+      <view class="section-title">参赛要求</view>
+      <view class="desc-content">
+        <rich-text nodes="{{detail.requirements || detail.requirement}}"></rich-text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{detail.prize || detail.award}}">
+      <view class="section-title">奖项设置</view>
+      <view class="desc-content">
+        <rich-text nodes="{{detail.prize || detail.award}}"></rich-text>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <button class="btn-primary btn-block" bindtap="onApply">
+        {{hasSubmitted ? '查看我的申报' : '立即申报'}}
+      </button>
+    </view>
+
+  </block>
+
+</view>

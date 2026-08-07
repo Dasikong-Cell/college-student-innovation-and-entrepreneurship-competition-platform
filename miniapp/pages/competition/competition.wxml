@@ -1,0 +1,65 @@
+<view class="container">
+
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索大赛名称" value="{{keyword}}" bindinput="onInputKeyword" bindconfirm="onConfirmSearch" confirm-type="search" />
+    </view>
+  </view>
+
+  <view class="category-bar" wx:if="{{categories.length > 0}}">
+    <scroll-view scroll-x class="cat-scroll" enable-flex="true">
+      <view class="cat-item {{category === '' ? 'cat-active' : ''}}" data-category="" bindtap="selectCategory">全部</view>
+      <view class="cat-item {{category === item ? 'cat-active' : ''}}" wx:for="{{categories}}" wx:key="*this" data-category="{{item}}" bindtap="selectCategory">{{item}}</view>
+    </scroll-view>
+  </view>
+
+  <block wx:if="{{loading}}">
+    <view class="card" wx:for="{{[1,2,3]}}" wx:key="*this">
+      <view class="skeleton" style="height:180rpx;margin-bottom:16rpx;"></view>
+      <view class="skeleton" style="height:28rpx;width:60%;margin-bottom:8rpx;"></view>
+      <view class="skeleton" style="height:24rpx;width:40%;"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view wx:if="{{list.length === 0}}" class="empty-wrap">
+      <view class="empty-icon">🎯</view>
+      <view class="text-muted">暂无大赛</view>
+    </view>
+
+    <view wx:for="{{list}}" wx:key="id" class="card comp-card" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="comp-top flex-between">
+        <view class="comp-title">{{item.title || item.name}}</view>
+        <view wx:if="{{item.status}}" class="tag tag-gray">{{item.status}}</view>
+      </view>
+
+      <view class="flex mt-8" wx:if="{{item.category}}">
+        <view class="tag tag-orange">{{item.category}}</view>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="comp-meta">
+        <view wx:if="{{item.registerStart || item.startTime}}" class="meta-row">
+          <text class="meta-label">报名时间：</text>
+          <text class="meta-value">{{item.registerStart || item.startTime}} ~ {{item.registerEnd || item.endTime}}</text>
+        </view>
+        <view wx:if="{{item.eventStart || item.eventTime}}" class="meta-row">
+          <text class="meta-label">比赛时间：</text>
+          <text class="meta-value">{{item.eventStart || item.eventTime}}</text>
+        </view>
+      </view>
+
+      <view class="comp-actions mt-16">
+        <view class="btn-secondary register-btn" catchtap="goDetail" data-id="{{item.id}}">
+          {{item.registerOpen !== false ? '立即申报' : '查看详情'}}
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{loadingMore}}" class="loading-wrap">加载中...</view>
+    <view wx:if="{{noMore}}" class="loading-wrap">没有更多了</view>
+  </block>
+
+</view>

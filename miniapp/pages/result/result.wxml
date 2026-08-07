@@ -1,0 +1,84 @@
+<view class="container">
+
+  <block wx:if="{{loading}}">
+    <view class="skeleton" style="height:120rpx;margin-bottom:24rpx;border-radius:16rpx;"></view>
+    <view class="card">
+      <view class="skeleton" style="height:28rpx;width:60%;margin-bottom:16rpx;"></view>
+      <view class="skeleton" style="height:120rpx;"></view>
+    </view>
+  </block>
+
+  <block wx:elif="{{project}}">
+
+    <view class="status-header card">
+      <view class="flex-between">
+        <view class="status-badge {{project.status === 'approved' || project.status === '已通过' ? 'badge-pass' : project.status === 'rejected' || project.status === '未通过' ? 'badge-fail' : 'badge-reviewing'}}">
+          {{project.statusLabel || project.status || '评审中'}}
+        </view>
+        <view class="prize" wx:if="{{project.prize}}">🏆 {{project.prize}}</view>
+      </view>
+      <view class="project-title mt-16">{{project.teamName || project.projectName}}</view>
+      <view class="final-score mt-16" wx:if="{{project.finalScore !== undefined && project.finalScore !== null}}">
+        综合得分：<text class="score-num">{{project.finalScore}}</text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{project.reviewerComment || project.comment}}">
+      <view class="section-title">评审总结</view>
+      <view class="comment-content">{{project.reviewerComment || project.comment}}</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">专家评审意见（{{reviews.length}}）</view>
+
+      <view wx:if="{{reviews.length === 0}}" class="empty-wrap">
+        <view class="empty-icon">📝</view>
+        <view class="text-muted">暂无评审记录</view>
+      </view>
+
+      <view wx:for="{{reviews}}" wx:key="id" class="review-item">
+        <view class="flex-between">
+          <view class="expert-name">{{item.expertName || item.expert || '匿名专家'}}</view>
+          <view class="score-total">总分 {{item.scoreTotal}}</view>
+        </view>
+
+        <view class="score-bar-row">
+          <text class="bar-label">创新性</text>
+          <view class="bar-bg"><view class="bar-fill bar-fill-blue" style="width:{{item.barScoreInnovation}}%"></view></view>
+          <text class="bar-val">{{item.scoreInnovation || 0}}</text>
+        </view>
+
+        <view class="score-bar-row">
+          <text class="bar-label">可行性</text>
+          <view class="bar-bg"><view class="bar-fill bar-fill-green" style="width:{{item.barScoreFeasibility}}%"></view></view>
+          <text class="bar-val">{{item.scoreFeasibility || 0}}</text>
+        </view>
+
+        <view class="score-bar-row">
+          <text class="bar-label">团队</text>
+          <view class="bar-bg"><view class="bar-fill bar-fill-orange" style="width:{{item.barScoreTeam}}%"></view></view>
+          <text class="bar-val">{{item.scoreTeam || 0}}</text>
+        </view>
+
+        <view class="score-bar-row">
+          <text class="bar-label">展示</text>
+          <view class="bar-bg"><view class="bar-fill bar-fill-purple" style="width:{{item.barScorePresentation}}%"></view></view>
+          <text class="bar-val">{{item.scorePresentation || 0}}</text>
+        </view>
+
+        <view class="divider"></view>
+        <view class="review-comment">{{item.comment || item.reviewComment || '该专家未留下文字点评'}}</view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{project.attachments && project.attachments.length > 0}}">
+      <view class="section-title">附件材料</view>
+      <view wx:for="{{project.attachments}}" wx:for-item="att" wx:key="url" class="attach-item" bindtap="previewAttachment" data-url="{{att.url}}">
+        <text class="attach-icon">📎</text>
+        <text class="attach-name">{{att.name || att.url}}</text>
+      </view>
+    </view>
+
+  </block>
+
+</view>

@@ -1,0 +1,25 @@
+.project-card {
+  padding: 24rpx;
+}
+
+.competition-title {
+  font-size: 26rpx;
+  color: #3b82f6;
+  font-weight: 500;
+  flex: 1;
+  margin-right: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.arrow {
+  font-size: 36rpx;
+  color: #d1d5db;
+}

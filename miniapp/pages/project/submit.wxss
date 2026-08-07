@@ -1,0 +1,72 @@
+.competition-banner {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(59, 130, 246, 0.3);
+}
+
+.comp-label {
+  font-size: 24rpx;
+  opacity: 0.85;
+}
+
+.comp-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.attach-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.attach-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb;
+  border-radius: 8rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.attach-name {
+  flex: 1;
+  font-size: 26rpx;
+  color: #374151;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attach-del {
+  font-size: 24rpx;
+  color: #ef4444;
+  padding: 0 12rpx;
+}
+
+.attach-add {
+  border: 2rpx dashed #d1d5db;
+  border-radius: 12rpx;
+  padding: 32rpx;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.add-icon {
+  font-size: 40rpx;
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.add-text {
+  font-size: 26rpx;
+}
+
+.btn-group {
+  padding: 24rpx 0 60rpx;
+}

@@ -1,0 +1,74 @@
+# ===== Build outputs =====
+target/
+dist/
+build/
+out/
+*.jar
+*.war
+*.class
+
+# ===== Node / Frontend =====
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+.nuxt/
+.next/
+.vuepress/dist/
+
+# ===== IDE =====
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.fleet/
+.jetbrains/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===== Env / Secrets =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== WeChat DevTools =====
+miniprogram_npm/
+project.private.config.json
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ===== Trae / AI =====
+.trae/
+.trae-cn/

@@ -1,0 +1,35 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: innovation-competition-platform
+  datasource:
+    url: jdbc:mysql://localhost:3306/innovation_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "123456"
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+jwt:
+  secret: a-very-long-secret-key-for-jwt-signing-please-change-in-production
+  expire-hours: 24
+
+wx:
+  miniapp:
+    appid: wx_demo_appid
+    secret: wx_demo_secret
+
+upload:
+  dir: D:/uploads/competition
+  public-url: http://localhost:8090/files/

@@ -1,0 +1,80 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+  padding: 0 48rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  padding-top: 180rpx;
+  text-align: center;
+}
+
+.logo-icon {
+  width: 140rpx;
+  height: 140rpx;
+  background-color: #ffffff;
+  border-radius: 40rpx;
+  margin: 0 auto 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 68rpx;
+  font-weight: 700;
+  color: #3b82f6;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.15);
+}
+
+.app-name {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12rpx;
+}
+
+.app-desc {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-wrap {
+  padding-bottom: 48rpx;
+}
+
+.wx-login-btn {
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.12);
+  padding: 24rpx 0;
+}
+
+.wx-login-btn:active {
+  background-color: #f3f4f6;
+}
+
+.toggle-link {
+  text-align: center;
+  margin-top: 32rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26rpx;
+  text-decoration: underline;
+}
+
+.test-login-box {
+  margin-top: 32rpx;
+}
+
+.footer {
+  text-align: center;
+  padding-bottom: 60rpx;
+}
+
+.footer .text-secondary {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22rpx;
+}

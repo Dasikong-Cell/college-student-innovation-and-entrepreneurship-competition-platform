@@ -1,0 +1,38 @@
+<view class="container">
+
+  <block wx:if="{{loading}}">
+    <view class="card" wx:for="{{[1,2]}}" wx:key="*this">
+      <view class="skeleton" style="height:28rpx;width:60%;margin-bottom:12rpx;"></view>
+      <view class="skeleton" style="height:24rpx;width:40%;margin-bottom:8rpx;"></view>
+      <view class="skeleton" style="height:24rpx;width:80%;"></view>
+    </view>
+  </block>
+
+  <block wx:elif="{{list.length === 0}}">
+    <view class="empty-wrap">
+      <view class="empty-icon">📁</view>
+      <view class="text-muted">暂无项目申报</view>
+      <view class="mt-16" bindtap="loadList">
+        <text class="more-link">刷新</text>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view wx:for="{{list}}" wx:key="id" class="card project-card" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="flex-between">
+        <view class="competition-title ellipsis">{{item.competitionTitle || item.competitionName || '大赛'}}</view>
+        <view class="tag {{item.status === 'approved' ? 'tag-green' : item.status === 'rejected' ? 'tag-red' : item.status === 'reviewing' ? 'tag-orange' : 'tag-gray'}}">
+          {{item.statusLabel || item.status || '未知'}}
+        </view>
+      </view>
+      <view class="project-name mt-8">{{item.teamName || item.projectName}}</view>
+      <view class="text-secondary mt-8">{{item.abstract}}</view>
+      <view class="flex-between mt-16">
+        <text class="text-secondary">申报时间：{{item.submitTime || item.submittedAt || item.createdAt}}</text>
+        <text class="text-secondary arrow">›</text>
+      </view>
+    </view>
+  </block>
+
+</view>

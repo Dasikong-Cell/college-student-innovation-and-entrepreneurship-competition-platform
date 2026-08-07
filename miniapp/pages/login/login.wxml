@@ -1,0 +1,33 @@
+<view class="login-page">
+  <view class="header">
+    <view class="logo-icon">创</view>
+    <view class="app-name">创新创业大赛平台</view>
+    <view class="app-desc">大学生专属赛事平台</view>
+  </view>
+
+  <view class="btn-wrap">
+    <button class="wx-login-btn btn-primary btn-block" loading="{{loading}}" bindtap="onWxLogin">
+      微信一键登录
+    </button>
+
+    <view class="toggle-link" bindtap="toggleTestLogin">
+      <text>{{showTestLogin ? '收起' : '使用测试账号登录'}}</text>
+    </view>
+
+    <view wx:if="{{showTestLogin}}" class="test-login-box card">
+      <view class="form-group">
+        <text class="form-label">用户名</text>
+        <input class="form-input" placeholder="请输入用户名" value="{{username}}" bindinput="onInputUsername" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">密码</text>
+        <input class="form-input" placeholder="请输入密码" password="{{true}}" value="{{password}}" bindinput="onInputPassword" />
+      </view>
+      <button class="btn-primary btn-block mt-16" loading="{{loading}}" bindtap="onAccountLogin">登录</button>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="text-secondary">登录即代表同意《用户协议》和《隐私政策》</text>
+  </view>
+</view>

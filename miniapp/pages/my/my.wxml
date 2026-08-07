@@ -1,0 +1,64 @@
+<view class="container">
+
+  <view class="profile-wrap">
+    <view class="profile-card">
+      <view class="avatar-wrap">
+        <image wx:if="{{user && user.avatarUrl}}" class="avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
+        <view wx:else class="avatar-placeholder">{{(user && user.name && user.name.charAt(0)) || 'U'}}</view>
+      </view>
+      <view class="user-info">
+        <view class="user-name">{{user.name || user.nickname || '未登录用户'}}</view>
+        <view class="user-role" wx:if="{{user.role}}">{{user.role}}</view>
+        <view class="user-detail" wx:if="{{user.college || user.major}}">
+          <text wx:if="{{user.college}}">{{user.college}}</text>
+          <text wx:if="{{user.college && user.major}}"> · </text>
+          <text wx:if="{{user.major}}">{{user.major}}</text>
+          <text wx:if="{{user.grade}}"> · {{user.grade}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="stats-card card">
+    <view class="stat-item" bindtap="goProjectList">
+      <view class="stat-num">{{stats.total}}</view>
+      <view class="stat-label">我的申报</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-num stat-pass">{{stats.approved}}</view>
+      <view class="stat-label">已通过</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-num stat-review">{{stats.reviewing}}</view>
+      <view class="stat-label">评审中</view>
+    </view>
+  </view>
+
+  <view class="menu-card card">
+    <view class="menu-item" bindtap="goProjectList">
+      <text class="menu-icon">📁</text>
+      <text class="menu-text">我的申报</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" wx:if="{{user && (user.role === 'expert' || user.role === 'EXPERT' || user.role === '专家')}}" bindtap="goReviewList">
+      <text class="menu-icon">👨‍⚖️</text>
+      <text class="menu-text">我的评审</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-icon">📬</text>
+      <text class="menu-text">消息通知</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="showAbout">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-text">关于我们</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <button class="btn-secondary btn-block logout-btn" bindtap="confirmLogout">退出登录</button>
+
+</view>

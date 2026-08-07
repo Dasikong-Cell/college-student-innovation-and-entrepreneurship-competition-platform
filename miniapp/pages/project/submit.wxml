@@ -1,0 +1,91 @@
+<view class="container">
+
+  <view class="competition-banner card" wx:if="{{competitionTitle}}">
+    <text class="comp-label">参赛大赛：</text>
+    <text class="comp-name">{{competitionTitle}}</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+
+  <block wx:else>
+
+    <view class="card">
+      <view class="section-title">团队信息</view>
+
+      <view class="form-group">
+        <text class="form-label">团队名称 *</text>
+        <input class="form-input" placeholder="请输入团队名称" value="{{form.teamName}}" data-field="teamName" bindinput="onInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">负责人姓名 *</text>
+        <input class="form-input" placeholder="请输入负责人姓名" value="{{form.leaderName}}" data-field="leaderName" bindinput="onInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">负责人电话 *</text>
+        <input class="form-input" placeholder="请输入手机号" type="number" value="{{form.leaderPhone}}" data-field="leaderPhone" bindinput="onInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">团队成员</text>
+        <textarea class="form-textarea" placeholder="请输入团队成员姓名，用逗号分隔" value="{{form.teamMembers}}" data-field="teamMembers" bindinput="onInput"></textarea>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">所在学院</text>
+        <input class="form-input" placeholder="请输入所在学院" value="{{form.college}}" data-field="college" bindinput="onInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">项目类别</text>
+        <input class="form-input" placeholder="如：科技创新、创意设计等" value="{{form.category}}" data-field="category" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">项目内容</view>
+
+      <view class="form-group">
+        <text class="form-label">项目简介 *</text>
+        <textarea class="form-textarea" placeholder="简要介绍你的项目（100-500字）" value="{{form.abstract}}" data-field="abstract" bindinput="onInput"></textarea>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">实施方案</text>
+        <textarea class="form-textarea" placeholder="详细描述项目的实施方案和执行计划" value="{{form.planContent}}" data-field="planContent" bindinput="onInput"></textarea>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">创新点</text>
+        <textarea class="form-textarea" placeholder="列出项目的核心创新点" value="{{form.innovationPoints}}" data-field="innovationPoints" bindinput="onInput"></textarea>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">预期成果</text>
+        <textarea class="form-textarea" placeholder="描述项目预期能够达成的目标和成果" value="{{form.expectedResults}}" data-field="expectedResults" bindinput="onInput"></textarea>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">附件材料</view>
+      <view class="attach-list">
+        <view class="attach-item" wx:for="{{attachments}}" wx:key="*this">
+          <text class="attach-name">{{item.name}}</text>
+          <text class="attach-del" data-idx="{{index}}" bindtap="onRemoveAttachment">删除</text>
+        </view>
+        <view class="attach-add" bindtap="onChooseFile">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加附件</text>
+        </view>
+      </view>
+      <view class="text-secondary mt-8">支持上传图片、文档等材料（单个文件不超过10MB）</view>
+    </view>
+
+    <view class="btn-group">
+      <button class="btn-secondary btn-block" bindtap="onSaveDraft" loading="{{submitting}}" disabled="{{submitting}}">保存草稿</button>
+      <button class="btn-primary btn-block mt-16" bindtap="onSubmit" loading="{{submitting}}" disabled="{{submitting}}">提交申报</button>
+    </view>
+
+  </block>
+</view>

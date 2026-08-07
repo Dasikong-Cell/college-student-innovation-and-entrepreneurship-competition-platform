@@ -1,0 +1,148 @@
+.status-header {
+  padding: 32rpx;
+}
+
+.status-badge {
+  padding: 8rpx 24rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.badge-pass {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.badge-fail {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-reviewing {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+.prize {
+  font-size: 28rpx;
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+.project-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.final-score {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.score-num {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-left: 8rpx;
+}
+
+.comment-content {
+  font-size: 28rpx;
+  color: #374151;
+  line-height: 1.8;
+  background-color: #f9fafb;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+
+.review-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.expert-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.score-total {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.bar-label {
+  width: 100rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.bar-bg {
+  flex: 1;
+  height: 16rpx;
+  background-color: #f3f4f6;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 0 16rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+.bar-fill-blue { background-color: #3b82f6; }
+.bar-fill-green { background-color: #10b981; }
+.bar-fill-orange { background-color: #f59e0b; }
+.bar-fill-purple { background-color: #8b5cf6; }
+
+.bar-val {
+  width: 60rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #374151;
+  font-weight: 500;
+}
+
+.review-comment {
+  font-size: 26rpx;
+  color: #4b5563;
+  line-height: 1.8;
+}
+
+.attach-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.attach-item:last-child { border-bottom: none; }
+
+.attach-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.attach-name {
+  font-size: 26rpx;
+  color: #3b82f6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
