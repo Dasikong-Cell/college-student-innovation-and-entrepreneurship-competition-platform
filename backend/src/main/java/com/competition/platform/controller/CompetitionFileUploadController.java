@@ -2,7 +2,7 @@ package com.competition.platform.controller;
 
 import com.competition.platform.common.R;
 import com.competition.platform.entity.FileUpload;
-import com.competition.platform.service.FileUploadService;
+import com.competition.platform.service.CompetitionFileUploadService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +13,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/file")
-public class FileUploadController {
+public class CompetitionFileUploadController {
 
-    private final FileUploadService fileUploadService;
+    private final CompetitionFileUploadService fileUploadService;
 
-    public FileUploadController(FileUploadService fileUploadService) {
+    public CompetitionFileUploadController(CompetitionFileUploadService fileUploadService) {
         this.fileUploadService = fileUploadService;
     }
 

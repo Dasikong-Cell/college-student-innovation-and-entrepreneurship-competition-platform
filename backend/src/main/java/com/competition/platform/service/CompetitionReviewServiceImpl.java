@@ -20,13 +20,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class ReviewService {
+public class CompetitionReviewServiceImpl implements CompetitionReviewService {
 
     private final ReviewMapper reviewMapper;
     private final SysUserMapper userMapper;
     private final ProjectMapper projectMapper;
 
-    public ReviewService(ReviewMapper reviewMapper, SysUserMapper userMapper, ProjectMapper projectMapper) {
+    public CompetitionReviewServiceImpl(ReviewMapper reviewMapper, SysUserMapper userMapper, ProjectMapper projectMapper) {
         this.reviewMapper = reviewMapper;
         this.userMapper = userMapper;
         this.projectMapper = projectMapper;

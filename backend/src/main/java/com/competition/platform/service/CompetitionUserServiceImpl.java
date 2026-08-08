@@ -11,11 +11,11 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 
 @Service
-public class UserService {
+public class CompetitionUserServiceImpl implements CompetitionUserService {
 
     private final SysUserMapper userMapper;
 
-    public UserService(SysUserMapper userMapper) {
+    public CompetitionUserServiceImpl(SysUserMapper userMapper) {
         this.userMapper = userMapper;
     }
 

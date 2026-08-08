@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.competition.platform.common.R;
 import com.competition.platform.entity.Project;
-import com.competition.platform.service.ProjectService;
+import com.competition.platform.service.CompetitionProjectService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +15,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/project")
-public class ProjectController {
+public class CompetitionProjectController {
 
-    private final ProjectService projectService;
+    private final CompetitionProjectService projectService;
 
-    public ProjectController(ProjectService projectService) {
+    public CompetitionProjectController(CompetitionProjectService projectService) {
         this.projectService = projectService;
     }
 

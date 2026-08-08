@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class FileUploadService {
+public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadService {
 
     @Value("${upload.dir}")
     private String uploadDir;
@@ -26,7 +26,7 @@ public class FileUploadService {
 
     private final FileUploadMapper fileUploadMapper;
 
-    public FileUploadService(FileUploadMapper fileUploadMapper) {
+    public CompetitionFileUploadServiceImpl(FileUploadMapper fileUploadMapper) {
         this.fileUploadMapper = fileUploadMapper;
     }
 

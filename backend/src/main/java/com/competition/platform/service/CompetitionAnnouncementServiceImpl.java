@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class AnnouncementService {
+public class CompetitionAnnouncementServiceImpl implements CompetitionAnnouncementService {
 
     private final AnnouncementMapper announcementMapper;
 
-    public AnnouncementService(AnnouncementMapper announcementMapper) {
+    public CompetitionAnnouncementServiceImpl(AnnouncementMapper announcementMapper) {
         this.announcementMapper = announcementMapper;
     }
 

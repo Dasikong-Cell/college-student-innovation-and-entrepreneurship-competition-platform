@@ -3,7 +3,7 @@ package com.competition.platform.controller;
 import cn.hutool.core.util.StrUtil;
 import com.competition.platform.common.R;
 import com.competition.platform.entity.SysUser;
-import com.competition.platform.service.AuthService;
+import com.competition.platform.service.CompetitionAuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +13,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class CompetitionAuthController {
 
-    private final AuthService authService;
+    private final CompetitionAuthService authService;
 
-    public AuthController(AuthService authService) {
+    public CompetitionAuthController(CompetitionAuthService authService) {
         this.authService = authService;
     }
 

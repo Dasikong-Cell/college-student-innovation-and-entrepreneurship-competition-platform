@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ProjectService {
+public class CompetitionProjectServiceImpl implements CompetitionProjectService {
 
     private final ProjectMapper projectMapper;
     private final SysUserMapper userMapper;
     private final ReviewMapper reviewMapper;
 
-    public ProjectService(ProjectMapper projectMapper, SysUserMapper userMapper, ReviewMapper reviewMapper) {
+    public CompetitionProjectServiceImpl(ProjectMapper projectMapper, SysUserMapper userMapper, ReviewMapper reviewMapper) {
         this.projectMapper = projectMapper;
         this.userMapper = userMapper;
         this.reviewMapper = reviewMapper;

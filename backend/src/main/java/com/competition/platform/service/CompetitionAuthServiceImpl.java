@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AuthService {
+public class CompetitionAuthServiceImpl implements CompetitionAuthService {
 
     private final SysUserMapper userMapper;
     private final JwtUtil jwtUtil;
 
-    public AuthService(SysUserMapper userMapper, JwtUtil jwtUtil) {
+    public CompetitionAuthServiceImpl(SysUserMapper userMapper, JwtUtil jwtUtil) {
         this.userMapper = userMapper;
         this.jwtUtil = jwtUtil;
     }

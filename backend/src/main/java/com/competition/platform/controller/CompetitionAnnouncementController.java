@@ -3,7 +3,7 @@ package com.competition.platform.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.competition.platform.common.R;
 import com.competition.platform.entity.Announcement;
-import com.competition.platform.service.AnnouncementService;
+import com.competition.platform.service.CompetitionAnnouncementService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +13,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/announcement")
-public class AnnouncementController {
+public class CompetitionAnnouncementController {
 
-    private final AnnouncementService announcementService;
+    private final CompetitionAnnouncementService announcementService;
 
-    public AnnouncementController(AnnouncementService announcementService) {
+    public CompetitionAnnouncementController(CompetitionAnnouncementService announcementService) {
         this.announcementService = announcementService;
     }
 

@@ -16,12 +16,12 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
-public class CompetitionService {
+public class CompetitionCompetitionServiceImpl implements CompetitionCompetitionService {
 
     private final CompetitionMapper competitionMapper;
     private final ProjectMapper projectMapper;
 
-    public CompetitionService(CompetitionMapper competitionMapper, ProjectMapper projectMapper) {
+    public CompetitionCompetitionServiceImpl(CompetitionMapper competitionMapper, ProjectMapper projectMapper) {
         this.competitionMapper = competitionMapper;
         this.projectMapper = projectMapper;
     }

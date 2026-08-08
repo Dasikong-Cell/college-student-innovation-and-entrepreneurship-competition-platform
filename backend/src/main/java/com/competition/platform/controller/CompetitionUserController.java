@@ -3,18 +3,18 @@ package com.competition.platform.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.competition.platform.common.R;
 import com.competition.platform.entity.SysUser;
-import com.competition.platform.service.UserService;
+import com.competition.platform.service.CompetitionUserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
+public class CompetitionUserController {
 
-    private final UserService userService;
+    private final CompetitionUserService userService;
 
-    public UserController(UserService userService) {
+    public CompetitionUserController(CompetitionUserService userService) {
         this.userService = userService;
     }
 

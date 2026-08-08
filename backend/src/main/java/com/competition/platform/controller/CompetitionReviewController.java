@@ -2,7 +2,7 @@ package com.competition.platform.controller;
 
 import com.competition.platform.common.R;
 import com.competition.platform.entity.Review;
-import com.competition.platform.service.ReviewService;
+import com.competition.platform.service.CompetitionReviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +14,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/review")
-public class ReviewController {
+public class CompetitionReviewController {
 
-    private final ReviewService reviewService;
+    private final CompetitionReviewService reviewService;
 
-    public ReviewController(ReviewService reviewService) {
+    public CompetitionReviewController(CompetitionReviewService reviewService) {
         this.reviewService = reviewService;
     }
 
