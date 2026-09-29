@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadService {
@@ -23,6 +24,12 @@ public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadSe
 
     @Value("${upload.public-url:http://localhost:8090/files/}")
     private String publicUrl;
+
+    // 上传文件扩展名白名单，避免上传可执行/危险文件
+    private static final Set<String> ALLOWED_EXT = Set.of(
+            "jpg", "jpeg", "png", "gif", "bmp", "webp",
+            "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx",
+            "txt", "csv", "md", "zip", "rar", "7z");
 
     private final FileUploadMapper fileUploadMapper;
 
@@ -39,6 +46,10 @@ public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadSe
         String ext = FileUtil.extName(originalName);
         if (ext == null || ext.isEmpty()) {
             ext = "bin";
+        }
+        ext = ext.toLowerCase();
+        if (!ALLOWED_EXT.contains(ext)) {
+            throw new RuntimeException("不支持的文件类型: ." + ext);
         }
         String storedName = IdUtil.fastSimpleUUID() + "." + ext;
 
@@ -74,7 +85,8 @@ public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadSe
         result.put("storedName", storedName);
         result.put("originalName", originalName);
         result.put("fileSize", record.getFileSize());
-        result.put("filePath", filePath);
+        // 不向客户端泄露服务器本地磁盘路径
+        result.put("filePath", null);
         return result;
     }
 
@@ -83,6 +95,8 @@ public class CompetitionFileUploadServiceImpl implements CompetitionFileUploadSe
         if (record == null) {
             throw new RuntimeException("文件记录不存在");
         }
+        // 返回前清除服务器本地路径，避免磁盘路径泄露
+        record.setFilePath(null);
         return record;
     }
 

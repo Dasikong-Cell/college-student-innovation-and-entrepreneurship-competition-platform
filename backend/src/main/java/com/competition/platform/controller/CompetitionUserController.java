@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.competition.platform.common.R;
 import com.competition.platform.entity.SysUser;
 import com.competition.platform.service.CompetitionUserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -33,14 +34,24 @@ public class CompetitionUserController {
     }
 
     @PutMapping
-    public R<String> update(@RequestBody SysUser user) {
-        Long userId = (Long) user.getId();
-        userService.update(userId, user);
+    public R<String> update(@RequestBody SysUser user, HttpServletRequest request) {
+        Long currentUserId = (Long) request.getAttribute("userId");
+        String role = (String) request.getAttribute("role");
+        // 仅本人或管理员可修改；管理员可修改任意用户，普通用户只能修改自己
+        if (!"admin".equals(role) && (currentUserId == null || user.getId() == null || !currentUserId.equals(user.getId()))) {
+            return R.fail(403, "无权限修改该用户");
+        }
+        userService.update(user.getId(), user);
         return R.ok("updated");
     }
 
     @PutMapping("/{id}/reset-password")
-    public R<String> resetPassword(@PathVariable Long id, @RequestBody Map<String, String> body) {
+    public R<String> resetPassword(@PathVariable Long id, @RequestBody Map<String, String> body, HttpServletRequest request) {
+        String role = (String) request.getAttribute("role");
+        // 重置密码属于高危操作，仅管理员可执行
+        if (!"admin".equals(role)) {
+            return R.fail(403, "仅管理员可重置密码");
+        }
         userService.resetPassword(id, body.getOrDefault("password", "123456"));
         return R.ok("password reset");
     }

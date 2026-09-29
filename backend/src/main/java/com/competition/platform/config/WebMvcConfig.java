@@ -20,21 +20,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/api/**")
+                .addPathPatterns("/api/**", "/files/**")
                 .excludePathPatterns(
-                        "/api/auth/login", "api/auth/logout",
+                        "/api/auth/login", "/api/auth/logout",
                         "/api/miniapp/auth/**",
-                        "/api/debug/**",
                         "/api/competition/page",
                         "/api/competition/{id}",
                         "/api/announcement/list",
-                        "/files/**",
                         "/error"
                 );
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 文件下载需经 JWT 拦截器鉴权（已在 addPathPatterns 中包含 /files/**）
         registry.addResourceHandler("/files/**")
                 .addResourceLocations("file:" + uploadDir + "/");
     }

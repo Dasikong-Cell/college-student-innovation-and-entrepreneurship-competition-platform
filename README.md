@@ -254,3 +254,19 @@ erDiagram
 | 杨欣宇 | 项目发起人 |
 
 PR 欢迎 🎉
+
+---
+
+## 安全与部署
+
+本仓库已落实以下生产就绪与安全加固（密钥均已外置到环境变量，见 `backend/.env.example`）：
+
+- **密钥外置**：`DB_PASSWORD`、`JWT_SECRET`、`WX_SECRET` 等均通过环境变量注入，禁止硬编码。生产务必覆盖 `JWT_SECRET`。
+- **接口鉴权修复**：`WebMvcConfig` 修正了 `/api/auth/logout` 漏写前导 `/` 的放行 bug；移除了 `/api/debug/**` 的放行（原为调试后门）；并将 `/files/**` 纳入 JWT 拦截范围，文件下载需携带有效 Bearer Token。
+- **越权修复**：`PUT /api/user` 仅允许本人或管理员修改；`PUT /api/user/{id}/reset-password` 仅管理员可执行（返回 403）。`update` 已清空 `role/username/password` 字段，杜绝提权。
+- **文件安全**：上传扩展名白名单限制（拒绝可执行/危险类型）；上传目录可通过 `UPLOAD_DIR` 配置（默认 `./uploads/competition`）；文件元数据与上传结果均不向客户端泄露服务器本地磁盘路径（`filePath` 置空）。
+- **Actuator 健康端点**：引入 `spring-boot-starter-actuator`，仅暴露 `health`、`info`；`health` 详细信息 `show-details: when_authorized`。
+- **CORS 必须配置**：生产环境请设置环境变量 `CORS_ALLOWED_ORIGINS`（逗号分隔的允许来源）。`CorsConfig` 默认仅放开本地前端来源。
+- **不回显内部异常**：全局异常处理器对未捕获 `RuntimeException` 统一返回「服务器内部错误」，完整堆栈仅记录在服务端日志。
+- **结构化日志**：`backend/src/main/resources/logback-spring.xml` 输出控制台 + 滚动文件，应用包 `INFO`、MyBatis/SQL 日志降为 `WARN`（已关闭 `StdOutImpl`，避免完整 SQL 与参数打印到 stdout）。
+- **CI**：`.github/workflows/ci.yml` 使用 JDK 17 + `mvn -B test` 进行构建与测试。
